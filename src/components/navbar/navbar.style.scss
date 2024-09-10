@@ -1,0 +1,207 @@
+.navbar-container {
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    z-index: 10;
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        padding: 1rem 5rem;
+        background-color: var(--dark);
+        height: 5rem;
+        width: 100%;
+        z-index: inherit;
+    
+        .nav-link {
+            text-decoration: none;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+    
+        .nav-logo {
+            width: 2.75rem;
+        }
+    
+        .nav-title {
+            margin-left: 1rem;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+    
+        .nav-links-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-left: auto;
+    
+            li {
+                list-style: none;
+                cursor: pointer;
+
+                .nav-link {
+                    display: flex;
+                    gap: 0.75rem;
+                    line-height: 0;
+
+                    img {
+                        width: 2rem;
+                        height: auto;
+                        border-radius: 50%;
+                    }
+
+                    &.user-link {
+                        padding: 0.25rem;
+                        padding-right: 0.75rem;
+                        border-radius: 1.25rem;
+                        background-color: var(--grey-3);
+                    }
+                }
+            }
+        }
+    }
+
+    .topics-bar {
+        padding: 0.25rem 5rem;
+        padding-bottom: 0;
+        display: flex;
+        gap: 1rem;
+        background-color: white;
+        border-bottom: 1px solid var(--grey-2);
+        box-shadow: 0 0 12px var(--grey-5);
+
+        .topic {
+            padding: 0.65rem 0.75rem;
+            font-size: 1rem;
+            color: var(--black);
+            border-bottom: 3px solid var(--white);
+
+            &:hover {
+                cursor: pointer;
+                color: var(--red);
+                border-bottom: 3px solid var(--red);
+            }
+
+            &.active {
+                cursor: pointer;
+                color: var(--red);
+                border-bottom: 3px solid var(--red);
+            }
+
+            &:first-of-type {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 1440px) {
+        .topics-bar {
+            padding: 0.25rem 5rem;
+        }
+    }
+    
+    @media (max-width: 1024px) {
+        .navbar {
+            padding: 1rem 3rem;
+        
+            .nav-logo {
+                width: 2.5rem;
+            }
+        
+            .nav-title {
+                font-size: 1.4rem;
+            }
+        
+            .nav-links-container {
+                li {
+                    .nav-link {
+                        img {
+                            width: 2rem;
+                            height: auto;
+                            border-radius: 50%;
+                        }
+
+                        &.user-link {
+                            padding: 0.25rem;
+                            padding-right: 0.75rem;
+                            border-radius: 1.25rem;
+                            background-color: var(--grey-3);
+                        }
+                    }
+                }
+            }
+        }
+
+        .topics-bar {
+            padding: 0.25rem 3rem;
+
+            .topic {
+                padding: 0.5rem 0.65rem;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .topics-bar {
+            padding: 0.25rem 3rem;
+
+            .topic {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+        }
+    }
+
+    @media (max-width: 426px) {
+        .navbar {
+            padding: 1rem;
+        
+            .nav-logo {
+                width: 2.25rem;
+            }
+        
+            .nav-title {
+                margin-left: 0.75rem;
+                font-size: 1.25rem;
+            }
+        
+            .nav-links-container {
+                li {
+                    display: none;
+
+                    &:last-of-type {
+                        display: flex;
+                    }
+
+                    .nav-link {
+                        &.user-link {
+                            padding: 0.25rem;
+
+                            span {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .topics-bar {
+            padding: 1rem;
+            overflow: scroll;
+
+            .topic {
+                padding: 0.25rem;
+                font-size: 0.75rem;
+
+                &:first-of-type {
+                    display: flex;
+                }
+            }
+        }
+    }
+}

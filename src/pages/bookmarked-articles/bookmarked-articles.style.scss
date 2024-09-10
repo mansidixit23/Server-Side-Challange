@@ -1,0 +1,51 @@
+.bookmarked-articles-page-container {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+
+    .bookmarked-articles-container {
+        margin-top: 10.5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .title {
+            font-size: 2.25rem;
+        }
+
+        .no-bookmarks {
+            width: 100%;
+            padding: 1rem;
+
+            h1 {
+                text-align: center;
+                color: var(--grey-3);
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        width: 95%;
+
+        .bookmarked-articles-container {
+            margin-top: 9.5rem;
+            gap: 1.5rem;
+
+            .title {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .bookmarked-articles-container {
+            gap: 1.75rem;
+
+            .title {
+                font-size: 1.75rem;
+            }
+        }
+    }
+}
