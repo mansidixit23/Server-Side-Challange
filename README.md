@@ -1,4 +1,4 @@
-# ReactReporter - A News Aggregator App
+# server-side-challange
 
 ![ReactReporter Screenshot](/public/assets/desktop-siteshot.png)
 
@@ -9,9 +9,6 @@ Welcome to ReactReporter, a news aggregator app. This news application is built 
 - [About](#about)
 - [Features](#features)
 - [Project Structure](#project-structure)
-- [Setup](#setup)
-- [Contact](#contact)
-- [Social](#social)
 
 ## About
 
@@ -51,35 +48,6 @@ The project is structured as follows:
   - `/routes`: Routes for the app.
   - `/style`: CSS styles for the app.
  
-## Contact
-
-Feel free to reach out to me with any inquiries, opportunities, or collaborations. You can contact me at:
-
-- Email: [priyanshusharma0326@gmail.com](mailto:priyanshusharma0326@gmail.com)
-- LinkedIn: [Priyanshu Sharma](https://www.linkedin.com/in/priyanshusharma0326)
-- Portfolio: [portfolio-xtechilad.vercel.app](https://portfolio-xtechilad.vercel.app/)
-
-## Social
-
-Connect with me on social media:
-
-- Twitter: [@xtechilad](https://twitter.com/xtechilad)
-- Instagram: [@xtechilad](https://www.instagram.com/xtechilad)
-- GitHub: [@priyanshusharma0326](https://github.com/priyanshusharma0326)
-
-Let's engage, share ideas, and stay connected!
   
-## Setup
 
-To run this application locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/PriyanshuSharma0326/react-news-app.git`
-2. Navigate to the project directory: `cd react-news-app`
-3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
-
-## Usage
-
-Once the development server is up and running, open your web browser and go to `http://localhost:3000` to see the project in action.
-
-Thank you for visiting my project!
