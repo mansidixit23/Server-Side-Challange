@@ -50,7 +50,7 @@ function NewsBox({ item }) {
                         onError={() => setImageError(true)}  
                     /> : 
                     <img 
-                        src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg" 
+                        src="" 
                         alt="" 
                     />
                 }

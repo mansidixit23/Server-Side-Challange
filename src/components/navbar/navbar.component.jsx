@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchCateredNews } from '../../features/cateredNewsSlice';
 import { UserContext } from '../../context/user-context';
-
+import logo from './Black and White Minimalist Professional Initial Logo.png';
 function Navbar() {
     const navigate = useNavigate();
 
@@ -43,11 +43,31 @@ function Navbar() {
                     to='/' 
                     className='nav-link' 
                 >
-                    <img className='nav-logo' src="https://brandlogos.net/wp-content/uploads/2022/09/autodesk_revit-logo_brandlogos.net_4hpe4-512x512.png" alt="Logo" />
-                    <h1 className='nav-title'>ReactReporter</h1>
+                    <img className='nav-logo' src={logo} alt="Logo" />
+                    <h1 className='nav-title'>BridgeBhasha</h1>
                 </Link>
 
                 {currentUser && <ul className="nav-links-container">
+                    <li>
+                        
+                    <label for="lang">lang:</label>
+               <select id="lang">
+               <option value="ENG">ENG</option>
+               <option value="Hindi">Hindi</option>
+               <option value="Punjabi">Punjabi</option>
+               
+               </select>
+                        
+                    </li>
+                    <li>
+                    <label for="loc">location:</label>
+
+<select id="loc">
+  <option value="chd">Chandigarh</option>
+  <option value="rj">Rajasthan</option>
+</select>
+                    </li>
+
                     <li>
                         <Link 
                             to='/account/bookmarks' 
@@ -78,6 +98,8 @@ function Navbar() {
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Science' ? ' active' : ''}`} onClick={() => goToCategoryPage('Science')}>Science</span>
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Sports' ? ' active' : ''}`} onClick={() => goToCategoryPage('Sports')}>Sports</span>
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Technology' ? ' active' : ''}`} onClick={() => goToCategoryPage('Technology')}>Technology</span>
+                <span className={`topic${location.pathname === '/quotes' ? ' active' : ''}`} onClick={() => navigate('/quotes')}>Quotes</span>
+                <span className={`topic${location.pathname === '/Giphy' ? ' active' : ''}`} onClick={() => navigate('/Giphy')}>Giphy</span>
             </div>}
         </div>
     )

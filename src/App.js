@@ -50,13 +50,7 @@ function App() {
                     </ProtectedRouteNoLogin>
                 } />
 
-                <Route path='news/*' element={
-                    <ProtectedRouteNoLogin>
-                        <NewsAndTopics />
-
-                        <Footer />
-                    </ProtectedRouteNoLogin>
-                } />
+                
 
                 <Route path='article/*' element={
                     <>

@@ -1,0 +1,67 @@
+
+/* Quotes.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .quote-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+  }
+  
+  .quote-box {
+    margin: 20px 0;
+  }
+  
+  .quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .author {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #222;
+  }
+  
+  .category {
+    font-size: 1rem;
+    color: #888;
+    background-color: ;
+  }
+  .categoryclass {
+    background-color: #dddddd;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .loader {
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .error {
+    color: red;
+    font-size: 1.2rem;
+  }
+  
