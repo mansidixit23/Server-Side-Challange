@@ -2,53 +2,69 @@ import React, { useState, useEffect } from "react";
 import "./GifLoader.css"; // Importing external CSS
 
 const GifLoader = () => {
+  const [query, setQuery] = useState("sadness");  // Default query
   const [gifData, setGifData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchGifData = async () => {
-      try {
-        const response = await fetch(
-          `https://tenor.googleapis.com/v2/search?q=sadness&key=AIzaSyB2yMhbOoEyLfYZCbP8Ip_T2snTJ7p5uMI&client_key=my_test_app&limit=8`
-        );
+  const fetchGifData = async () => {
+    setLoading(true);
+    setError(null);
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
+    try {
+      const response = await fetch(
+        `https://tenor.googleapis.com/v2/search?q=${query}&random=true&key=AIzaSyB2yMhbOoEyLfYZCbP8Ip_T2snTJ7p5uMI&client_key=my_test_app&limit=8`
+      );
 
-        const data = await response.json();
-        setGifData(data.results[0]);  // Assuming you want to display the first GIF
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
       }
-    };
 
-    fetchGifData();
-  }, []);
+      const data = await response.json();
+      
+      // Randomly select a GIF from the results
+      const randomIndex = Math.floor(Math.random() * data.results.length);
+      setGifData(data.results[randomIndex]);
+      
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
 
-  if (loading) return <div className="loader">Loading...</div>;
-  if (error) return <p className="error">Error: {error}</p>;
+  // Handle form submission to fetch GIF based on user input
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchGifData();  // Fetch new GIF based on updated query
+  };
 
   return (
     <div className="outerbody">
     <div className="gif-container">
-      <h1 className="title">GIF of the Day</h1>
-      {gifData ? (
+      <h1 className="title">GIF Search</h1>
+
+      {/* Form for user input */}
+      <form onSubmit={handleSearch} className="search-form">
+        <input
+          type="text"
+          placeholder="Enter search term"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="input-field"
+        />
+        <button type="submit" className="search-button">Search</button>
+      </form>
+
+      {loading && <div className="loader">Loading...</div>}
+      {error && <p className="error">Error: {error}</p>}
+
+      {/* Display GIFs if available */}
+      {gifData && !loading && (
         <>
+        
           <div className="gif-box">
-            <h2 className="gif-title">Preview GIF</h2>
-            <img
-              id="preview_gif"
-              src={gifData.media_formats.nanogif.url}
-              alt="Preview GIF"
-              className="gif-preview"
-            />
-          </div>
-          <div className="gif-box">
-            <h2 className="gif-title">Share GIF</h2>
+            <h2 className="gif-title">GIF</h2>
             <img
               id="share_gif"
               src={gifData.media_formats.gif.url}
@@ -57,8 +73,6 @@ const GifLoader = () => {
             />
           </div>
         </>
-      ) : (
-        <p>No GIF data available.</p>
       )}
     </div>
     </div>
