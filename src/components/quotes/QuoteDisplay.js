@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Quotes.css"; // Importing external CSS
-
 const QuoteDisplay = () => {
   const [quoteData, setQuoteData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -39,6 +38,8 @@ const QuoteDisplay = () => {
   if (error) return <p className="error">Error: {error}</p>;
 
   return (
+    <>
+    <div className="upperbody">
     <div className="quote-container">
       <h1 className="title">Quote of the Day</h1>
       {quoteData ? (
@@ -53,6 +54,8 @@ const QuoteDisplay = () => {
         <p>No data available.</p>
       )}
     </div>
+    </div>
+    </>
   );
 };
 

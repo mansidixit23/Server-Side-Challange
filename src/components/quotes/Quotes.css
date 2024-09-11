@@ -1,15 +1,11 @@
 
 /* Quotes.css */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+.upperbody{
+  margin-top: 200px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
   
   .quote-container {
     background-color: #fff;
@@ -47,7 +43,6 @@ body {
   .category {
     font-size: 1rem;
     color: #888;
-    background-color: ;
   }
   .categoryclass {
     background-color: #dddddd;

@@ -62,10 +62,10 @@ function Navbar() {
                     <li>
                     <label for="loc">location:</label>
 
-<select id="loc">
-  <option value="chd">Chandigarh</option>
-  <option value="rj">Rajasthan</option>
-</select>
+                    <select id="loc">
+                    <option value="chd">Chandigarh</option>
+                    <option value="rj">Rajasthan</option>
+                    </select>
                     </li>
 
                     <li>
@@ -98,8 +98,9 @@ function Navbar() {
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Science' ? ' active' : ''}`} onClick={() => goToCategoryPage('Science')}>Science</span>
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Sports' ? ' active' : ''}`} onClick={() => goToCategoryPage('Sports')}>Sports</span>
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Technology' ? ' active' : ''}`} onClick={() => goToCategoryPage('Technology')}>Technology</span>
-                <span className={`topic${location.pathname === '/quotes' ? ' active' : ''}`} onClick={() => navigate('/quotes')}>Quotes</span>
-                <span className={`topic${location.pathname === '/Giphy' ? ' active' : ''}`} onClick={() => navigate('/Giphy')}>Giphy</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'quotes' ? ' active' : ''}`} onClick={() => goToCategoryPage('quotes')}>Quotes</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Giphy' ? ' active' : ''}`} onClick={() => goToCategoryPage('Giphy')}>Giphy</span>
+                
             </div>}
         </div>
     )
