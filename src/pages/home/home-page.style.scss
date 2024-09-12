@@ -1,3 +1,11 @@
+.heading-wrap {
+    display: flex;
+    flex-direction: row; /* Default direction for flex, optional */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Distribute space between elements */
+    width: 100%; /* Ensure the heading takes the full width */
+}
+
 .home-page-container {
     width: 90%;
     margin: 0 auto;
