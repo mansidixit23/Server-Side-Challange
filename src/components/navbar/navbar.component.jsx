@@ -1,39 +1,55 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './navbar.style.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchCateredNews } from '../../features/cateredNewsSlice';
 import { UserContext } from '../../context/user-context';
 import logo from './Black and White Minimalist Professional Initial Logo.png';
+import axios from 'axios';
+import imageforBluff from '../../assets/WhatsApp Image 2024-09-12 at 01.18.37.jpeg';
 
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const { currentUser, userDoc } = useContext(UserContext);
+  const [temperature, setTemperature] = useState(null);
 
-  const goToNewsPage = () => {
-    navigate('/news');
+  // Fetch Temperature based on user location
+  const fetchTemperature = async (lat, lon) => {
+    try {
+      const apiKey = 'ad17a6ce78816364bf2f3f1dbd054bd2';
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+      );
+      setTemperature(response.data.main.temp);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    }
   };
 
-  const goToBookmarks = () => {
-    navigate('/account/bookmarks');
-  };
-
-  const goToCategoryPage = (searchString) => {
-    navigate(`/news/${searchString}`);
+  const handleImageClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        fetchTemperature(latitude, longitude);
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
   };
 
   useEffect(() => {
-    const topicsBar = document.getElementById('topics-bar');
-
-    currentUser &&
-      topicsBar.childNodes.forEach((node, index) => {
-        if (index > 0) {
-          dispatch(fetchCateredNews(node.innerText));
-        }
+    if (currentUser) {
+      const topicsBar = document.getElementById('topics-bar');
+      topicsBar.childNodes.forEach((node) => {
+        dispatch(fetchCateredNews(node.innerText));
       });
+    }
   }, [dispatch, currentUser]);
+
+  const goToCategoryPage = (category) => navigate(`/news/${category}`);
+  const isActiveTopic = (path) => location.pathname.includes(path);
 
   return (
     <div className='navbar-container'>
@@ -46,7 +62,7 @@ function Navbar() {
         {currentUser && (
           <ul className='nav-links-container'>
             <li>
-              <label htmlFor='lang'>lang:</label>
+              <label htmlFor='lang'>Lang:</label>
               <select id='lang'>
                 <option value='ENG'>ENG</option>
                 <option value='Hindi'>Hindi</option>
@@ -54,20 +70,21 @@ function Navbar() {
               </select>
             </li>
             <li>
-              <label htmlFor='loc'>location:</label>
+              <label htmlFor='loc'>Location:</label>
               <select id='loc'>
                 <option value='chd'>Chandigarh</option>
                 <option value='rj'>Rajasthan</option>
               </select>
             </li>
             <li>
-              <Link to='/account/bookmarks' className='nav-link'>
-                Bookmarks
-              </Link>
+              <Link to='/account/bookmarks' className='nav-link'>Bookmarks</Link>
             </li>
             <li>
               <Link to='/account' className='nav-link user-link'>
-                <img src={userDoc?.photoURL} alt={userDoc?.displayName} />
+                <img
+                  src={userDoc?.photoURL || 'https://via.placeholder.com/40'}
+                  alt={userDoc?.displayName || 'User'}
+                />
                 <span>{userDoc?.username}</span>
               </Link>
             </li>
@@ -75,94 +92,26 @@ function Navbar() {
         )}
       </nav>
 
+      {/* Topics Bar */}
       {currentUser && (
         <div className='topics-bar' id='topics-bar'>
-          <span
-            className={`topic${
-              location.pathname === '/account/bookmarks' ? ' active' : ''
-            }`}
-            onClick={goToBookmarks}
-          >
-            Bookmarks
-          </span>
-          <span
-            className={`topic${location.pathname === '/news' ? ' active' : ''}`}
-            onClick={goToNewsPage}
-          >
-            General
-          </span>
-          <span
-            className={`topic${
-              location.pathname.split('/news/')[1] === 'Business'
-                ? ' active'
-                : ''
-            }`}
-            onClick={() => goToCategoryPage('Business')}
-          >
-            Business
-          </span>
-          <span
-            className={`topic${
-              location.pathname.split('/news/')[1] === 'Entertainment'
-                ? ' active'
-                : ''
-            }`}
-            onClick={() => goToCategoryPage('Entertainment')}
-          >
-            Entertainment
-          </span>
-          <span
-            className={`topic${
-              location.pathname.split('/news/')[1] === 'Health' ? ' active' : ''
-            }`}
-            onClick={() => goToCategoryPage('Health')}
-          >
-            Health
-          </span>
-          <span
-            className={`topic${
-              location.pathname.split('/news/')[1] === 'Science'
-                ? ' active'
-                : ''
-            }`}
-            onClick={() => goToCategoryPage('Science')}
-          >
-            Science
-          </span>
-          <span
-            className={`topic${
-              location.pathname.split('/news/')[1] === 'Sports' ? ' active' : ''
-            }`}
-            onClick={() => goToCategoryPage('Sports')}
-          >
-            Sports
-          </span>
-          <span
-            className={`topic${
-              location.pathname.split('/news/')[1] === 'Technology'
-                ? ' active'
-                : ''
-            }`}
-            onClick={() => goToCategoryPage('Technology')}
-          >
-            Technology
-          </span>
-          <span
-            className={`topic${
-              location.pathname === '/quotes' ? ' active' : ''
-            }`}
-            onClick={() => navigate('/quotes')}
-          >
-            Quotes
-          </span>
-          <span
-            className={`topic${location.pathname === '/Giphy' ? ' active' : ''}`}
-            onClick={() => navigate('/Giphy')}
-          >
-            Giphy
-          </span>
+          {['General', 'Business', 'Entertainment', 'Health', 'Science', 'Sports', 'Technology', 'Quotes', 'Giphy'].map((topic) => (
+            <span
+              key={topic}
+              className={`topic${isActiveTopic(topic) ? ' active' : ''}`}
+              onClick={() => goToCategoryPage(topic)}
+            >
+              {topic}
+            </span>
+          ))}
         </div>
       )}
+
+      {/* Floating Weather Button */}
+      <div className='weather-button' onClick={handleImageClick}>
+        <img src={imageforBluff} alt='Weather' />
+        {temperature && <p>{temperature}°C</p>}
+      </div>
     </div>
   );
 }
