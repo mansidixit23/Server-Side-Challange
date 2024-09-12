@@ -64,6 +64,7 @@ function NewsBox({ item }) {
     }, []);
 
     return (
+
         <div className="news-box">
             <div className="image-container">
                 {!imageError ? (
@@ -71,6 +72,20 @@ function NewsBox({ item }) {
                         src={item?.urlToImage}
                         alt=""
                         onError={() => setImageError(true)}
+
+        <div className='news-box'>
+            <div className='image-container'>
+                {
+                    !imageError ? 
+                    <img 
+                        src={item?.urlToImage} 
+                        alt="" 
+                        onError={() => setImageError(true)}  
+                    /> : 
+                    <img 
+                        src="" 
+                        alt="" 
+
                     />
                 ) : (
                     <img src="" alt="" />

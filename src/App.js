@@ -12,6 +12,8 @@ import SignIn from './pages/signin/signin';
 import SignUp from './pages/signup/signup';
 import Account from './routes/account/account.route';
 import Footer from './components/footer/footer.component';
+import Quotes from './components/quotes/QuoteDisplay';
+import Giphy from './components/Gif/GifLoader';
 import ArticleRoute from './routes/article/article.route';
 
 function App() {
@@ -50,6 +52,20 @@ function App() {
                     </ProtectedRouteNoLogin>
                 } />
 
+                <Route path='news/quotes' element={
+                    <ProtectedRouteNoLogin>
+                        <Quotes />
+
+                        <Footer />
+                    </ProtectedRouteNoLogin>
+                } />
+                <Route path='news/Giphy' element={
+                    <ProtectedRouteNoLogin>
+                        <Giphy />
+
+                        <Footer />
+                    </ProtectedRouteNoLogin>
+                } />
                 <Route path='news/*' element={
                     <ProtectedRouteNoLogin>
                         <NewsAndTopics />
@@ -57,6 +73,7 @@ function App() {
                         <Footer />
                     </ProtectedRouteNoLogin>
                 } />
+                
 
                 <Route path='article/*' element={
                     <>
