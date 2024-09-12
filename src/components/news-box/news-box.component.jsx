@@ -64,31 +64,19 @@ function NewsBox({ item }) {
     }, []);
 
     return (
-
-        <div className="news-box">
-            <div className="image-container">
-                {!imageError ? (
-                    <img
-                        src={item?.urlToImage}
-                        alt=""
-                        onError={() => setImageError(true)}
-
         <div className='news-box'>
             <div className='image-container'>
-                {
-                    !imageError ? 
+                {!imageError ? (
                     <img 
                         src={item?.urlToImage} 
-                        alt="" 
-                        onError={() => setImageError(true)}  
-                    /> : 
-                    <img 
-                        src="" 
-                        alt="" 
-
+                        alt="News" 
+                        onError={() => setImageError(true)} 
                     />
                 ) : (
-                    <img src="" alt="" />
+                    <img 
+                        src="/path-to-placeholder-image.png"  // Placeholder image path
+                        alt="Placeholder" 
+                    />
                 )}
             </div>
 
